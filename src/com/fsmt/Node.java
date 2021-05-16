@@ -12,6 +12,18 @@ public class Node {
         this.name = name;
     }
 
+    public String getNodeName(){
+        return name;
+    }
 
+    public void createConnection(String name, Node node){
+        if (!nodeConnection.containsKey(name)){
+            nodeConnection.put(name, node);
+        }
+    }
+
+    public Node nextNode(String name){
+        return nodeConnection.get(name);
+    }
 
 }
