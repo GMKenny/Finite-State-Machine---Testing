@@ -12,7 +12,6 @@ public class FinalStateMachine {
         this.createNodes(nodeAmount);
     }
 
-
     public void createNodes(int nodeAmount){
         for (int i = 1; i < nodeAmount + 1; i++){
             Node node = new Node(("N" + i));
@@ -20,8 +19,36 @@ public class FinalStateMachine {
         }
     }
 
+    public void setInputText(String inputString){
+        this.inputString = inputString;
+    }
 
+    public void deleteNodes(){
+        allNodes.clear();
+    }
 
+    public void setConnectionPerNode(String connection, int startNode, int endNode){
+        allNodes.get("N"+startNode).createConnection(connection, allNodes.get("N"+endNode));
+    }
+
+    public String processInputToString(){
+        String nextNode = "N1";
+        String outputString = inputString + " Gives the following route: ";
+        for (int i = 0; i < inputString.length(); i++) {
+
+            String character = String.valueOf(inputString.charAt(i));
+            outputString += "\n" + character + ", from " + nextNode + " to ";
+
+            try {
+                nextNode = allNodes.get(nextNode).nextNode(character).getNodeName();
+            }
+            catch(Exception e){
+                return "\nError: String " + inputString + " has no connection " + character + " with node " + nextNode;
+            }
+            outputString += nextNode;
+        }
+        return "\n" + outputString + "\nThe end node is " + nextNode;
+    }
 
 
 
