@@ -3,13 +3,15 @@ package com.fsmt;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class NodeTest {
 
     @Test
     public void getNodeName() {
         Node nodeOne = new Node("N1");
-        System.out.println(nodeOne.getNodeName());
+        assertEquals("N1", nodeOne.getNodeName());
+
     }
 
     @Test
@@ -20,9 +22,7 @@ public class NodeTest {
         // duplicate test
         nodeOne.createConnection("A",nodeTwo);
         nodeOne.createConnection("A",nodeThree);
-        System.out.println(nodeTwo);
-        System.out.println(nodeThree);
-        System.out.println(nodeOne.nextNode("A"));
+        assertEquals(nodeTwo, nodeOne.nextNode("A"));
     }
-    
+
 }

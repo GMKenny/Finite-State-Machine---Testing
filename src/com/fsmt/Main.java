@@ -22,12 +22,15 @@ public class Main {
 
         fSM.setInputText("CACBACABACD");
         System.out.println(fSM.processInputToString());
+        System.out.println(fSM.getNodeSize());
 
         fSM.setInputText("AAACDAD");
         System.out.println(fSM.processInputToString());
+        System.out.println(fSM.getNodeSize());
 
         fSM.deleteNodes();
         fSM.createNodes(3);
+
         fSM.setConnectionPerNode("A", 1, 2);
         fSM.setConnectionPerNode("B", 1, 3);
         fSM.setConnectionPerNode("A", 2, 1);
@@ -36,6 +39,7 @@ public class Main {
 
         fSM.setInputText("AAABBC");
         System.out.println(fSM.processInputToString());
+        System.out.println(fSM.getNodeSize());
 
     }
 }

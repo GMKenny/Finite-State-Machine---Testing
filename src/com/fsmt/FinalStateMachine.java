@@ -1,6 +1,7 @@
 package com.fsmt;
 
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class FinalStateMachine {
@@ -19,8 +20,16 @@ public class FinalStateMachine {
         }
     }
 
+    public String getNodeSize(){
+        return "size of nodes: " + allNodes.size();
+    }
+
     public void setInputText(String inputString){
         this.inputString = inputString;
+    }
+
+    public String getInputText(){
+        return inputString;
     }
 
     public void deleteNodes(){
@@ -31,9 +40,10 @@ public class FinalStateMachine {
         allNodes.get("N"+startNode).createConnection(connection, allNodes.get("N"+endNode));
     }
 
+
     public String processInputToString(){
         String nextNode = "N1";
-        String outputString = inputString + " Gives the following route: ";
+        String outputString = getInputText() + " Gives the following route: ";
         for (int i = 0; i < inputString.length(); i++) {
 
             String character = String.valueOf(inputString.charAt(i));
@@ -43,7 +53,7 @@ public class FinalStateMachine {
                 nextNode = allNodes.get(nextNode).nextNode(character).getNodeName();
             }
             catch(Exception e){
-                return "\nError: String " + inputString + " has no connection " + character + " with node " + nextNode;
+                return "\nError: String " + getInputText() + " has no connection " + character + " with node " + nextNode;
             }
             outputString += nextNode;
         }
